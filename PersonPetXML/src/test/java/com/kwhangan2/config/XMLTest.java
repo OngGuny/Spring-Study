@@ -1,4 +1,4 @@
-package kr.co.kwhangan2;
+package com.kwhangan2.config;
 
 import static org.junit.Assert.assertNotNull;
 
@@ -12,9 +12,9 @@ import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes= {RootConfig.class})
+@ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
 @Log4j
-public class JavaConfigTest { // 이거할때는 플러그인 xml 셋팅해줘야함.
+public class XMLTest { // 이거할때는 플러그인 xml 셋팅해줘야함.
 	@Setter(onMethod_ = {@Autowired})
 	private Person person;
 	
