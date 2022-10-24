@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd"><!-- 시스템 내에서의 식별자. 전세계 공용임. -->
+<mapper namespace="kr.kwangan2.mapper.TimeMapper"><!-- 파일 자체를 정의 아래엔 쿼리문 작성 src/main/resource 밑에 패키지 안만들어주면 못찾아간다. ㅄ-->
+	<select id="getTime2" resultType="string">
+		SELECT sysdate FROM dual
+	</select>
+</mapper>
