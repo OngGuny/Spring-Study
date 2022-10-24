@@ -32,9 +32,12 @@ public class JavaConfigTest { // 이거할때는 플러그인 xml 셋팅해줘�
 		person.setName("KillDong");
 		//person.getPet();
 //		person.getPet().setAge(5);;
-//		person.getPet().setName("Happy");
-		pet.setAge(5);
+//		person.getPet().setName("Happy"); 이건 DI 가 아님. 
+		pet.setAge(5); 
 		pet.setName("dd");
+		//
+		person.setPet(pet);// 이게 DI 개념.  이게 조립하는거지. 
+		//
 		log.info(person);
 		log.info(person.getAge()+"살 인  "+person.getName()+"이  "+person.getPet().getAge()+"살 인  "+person.getPet().getName()+"를 키웁니다!");
 
