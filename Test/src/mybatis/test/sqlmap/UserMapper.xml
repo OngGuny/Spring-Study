@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <mapper namespace="mybatis.test.sqlmap">
+    <resultMap id="UserResult" type ="User">
+    <id property="sid" column="sid"/>
+    <result property="email" column="email"/>
+    <result property="name" column="name"/>
+    <result property="passwd" column="passwd"/>
+    </resultMap>
+    <insert id="insertUser" parameterType="User">
+	    insert into UserTable (sid, email, name, passwd)
+	    values(usertable_seq.nextval, #{email}, #{name}, #{passwd})
+    </insert>
+    <select id="selectAllUsers" resultMap="UserResult">
+    select*from usertable order by sid desc
+    </select>
+    <delete id="deleteUser" parameterType="int">
+    delete from usertable where sid =#{sid}
+    </delete>
+    <update id="updateUser" parameterType="User">
+    update usertable
+    set email=#{email}, name=#{name}, passwd=#{passwd}
+    where sid=#{sid}
+    </update>
+ </mapper>
