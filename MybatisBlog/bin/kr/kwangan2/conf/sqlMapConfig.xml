@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-config.dtd">
+<!-- 얘가 DAO 역할 -->
+<configuration>
+	<properties resource="kr/kwangan2/conf/db.properties" />
+	<typeAliases>
+		<typeAlias alias="Blog" type="kr.kwangan2.domain.Blog" />
+		<typeAlias alias="Author" type="kr.kwangan2.domain.Author" />
+		<typeAlias alias="Comm" type="kr.kwangan2.domain.Comm" />
+		<typeAlias alias="CommSearcher"
+			type="kr.kwangan2.domain.CommSearcher" />
+	</typeAliases>
+	<environments default="development">
+		<environment id="development">
+			<transactionManager type="JDBC" />
+			<dataSource type="POOLED">
+				<property name="driver" value="${driver}" />
+				<property name="url" value="${url}" />
+				<property name="username" value="${username}" />
+				<property name="password" value="${password}" />
+			</dataSource>
+		</environment>
+	</environments>
+	<mappers><!-- 아래의 xml 들이 Impl 역할  -->
+		<mapper resource="kr\kwangan2\conf\Blog.xml" />
+<!-- 		<mapper resource="kr\kwangan2\conf\Comm.xml" /> -->
+<!-- 		<mapper resource="kr\kwangan2\conf\Author.xml" /> -->
+	</mappers>
+</configuration>
+

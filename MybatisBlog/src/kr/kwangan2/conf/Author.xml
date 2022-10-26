@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.kwangan2.conf.Blog">
+	<resultMap id="blogResultMap" type="Blog">
+		<constructor>
+			<idArg column="blog_id" javaType="int" />
+		</constructor>
+		<result property="blogName" column="blog_name" />
+		<result property="blogTitle" column="blog_title" />
+
+		<association property="author" column="fk_author_id"
+			javaType="Author" resultMap="authorResultMap" />
+		<collection property="comms" ofType="Comm"
+			resultMap="commResultMap" />
+	</resultMap>
+	<resultMap type="Author" id="authorResultMap">
+		<id property="authorId" column="author_id" />
+		<result property="authorName" column="author_name" />
+	</resultMap>
+
+	<resultMap type="Comm" id="commResultMap">
+		<id property="commId" column="comm_id" />
+		<result property="commTitle" column="comm_title" />
+		<result property="commContent" column="comm_content" />
+		<result property="fkblogId" column="fk_blog_id" />
+	</resultMap>
+
+	<select id="selectBlog" resultMap="blogResultMap">
+		select
+		B.blog_id, B.blog_name,
+		B.blog_title, B.fk_author_id,
+		A.author_id, A.author_name,
+		C.comm_id, C.comm_title, C.comm_content, C.fk_blog_id
+		from
+		Blog B
+		left outer join AUTHOR A on B.fk_author_id = A.author_id
+		left outer join COMM C on C.fk_blog_id = B.blog_id
+	</select>
+	<sql id="selectCommLet">
+		select comm_id, comm_title, comm_content, fk_blog_id
+		from Comm 
+	</sql>
+	<select id="selectCommsByBlogId" parameterType="CommSearcher"
+		resultMap="commResultMap">
+		<include refid="selectCommLet" />
+		where fk_blog_id = #{fkblogId}
+		<if test="searchValue !=null">
+			<choose>
+				<when test="searchKey=='title'">
+					and comm_title like '%'||#{searchValue}||'%'
+				</when>
+				<when test="searchKey=='content'">
+					and comm_content like '%'||#{searchValue}||'%'
+				</when>
+				<otherwise><!-- this is for error control -->
+					and 1=1
+				</otherwise>
+			</choose>
+		</if>
+		order by comm_id desc
+	</select>
+	<select id="selectCommsByCommIds" parameterType="list"
+		resultMap="commResultMap">
+		<include refid="selectCommLet" />
+		<where>
+			blog_id=#{list[0]}
+			and comm_id in
+			<foreach item="item" index="index" collection="list" open="("
+				separator="," close=")">
+				<if test="index>0">
+					#{item}
+				</if>
+			</foreach>    
+		</where>
+	</select>
+
+	<update id="updateComm" parameterType="Comm">
+		update comm
+		<trim prefix="set" suffixOverrides=",">
+			<if test="commTitle !=null">comm_title=#{commTitle},</if>
+			<if test="commContent !=null">comm_content=#{commContent}</if>
+		</trim>
+		<where>
+			<if test="commId !=null">
+				comm_id=#{commId}
+			</if>
+			<if test="fkblogId !=null">
+				fk_blog_id=#{fkblogId}
+			</if>`	
+		</where>
+	</update>
+
+</mapper>
