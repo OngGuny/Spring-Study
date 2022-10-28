@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd"><!-- 시스템 내에서의 식별자. 전세계 공용임. -->
+<mapper namespace="kr.kwangan2.springmvcboard.mapper.BoardMapper">
+	<select id="boardVOList" resultType="kr.kwangan2.springmvcboard.domain.BoardVO">
+		<![CDATA[
+			select * from board where bno>0
+		]]>
+	</select>
+
+</mapper>
