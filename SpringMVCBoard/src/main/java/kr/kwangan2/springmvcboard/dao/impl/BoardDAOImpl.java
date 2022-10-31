@@ -21,13 +21,13 @@ public class BoardDAOImpl extends AbstractBoardDAO {
 	}
 
 	@Override
-	public void insertBoardVO(BoardVO boardVO) {
-		mapper.insertBoardVO(boardVO);
+	public int insertBoardVO(BoardVO boardVO) {
+		return mapper.insertBoardVO(boardVO);
 	}
 
 	@Override
-	public void insertBoardVOSelectKey(BoardVO boardVO) {
-		mapper.insertBoardVOSelectKey(boardVO);
+	public int insertBoardVOSelectKey(BoardVO boardVO) {
+		return mapper.insertBoardVOSelectKey(boardVO);
 	}
 
 	@Override

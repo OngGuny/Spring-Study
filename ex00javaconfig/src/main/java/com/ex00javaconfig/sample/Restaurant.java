@@ -6,12 +6,13 @@ import org.springframework.stereotype.Component;
 import lombok.Data;
 import lombok.Setter;
 
+
+
 @Component
 @Data
-
 public class Restaurant {
  	
-	@Setter(onMethod_  =@Autowired)//레스토랑에게 쉐프가 필요할때 자동으로 주겠다는것  
+	@Setter(onMethod_=@Autowired)//�젅�뒪�넗�옉�뿉寃� �뎽�봽媛� �븘�슂�븷�븣 �옄�룞�쑝濡� 二쇨쿋�떎�뒗寃�  
  	private Chef chef;
 	
 }

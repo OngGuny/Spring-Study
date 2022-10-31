@@ -15,15 +15,15 @@ public class AbstractBoardDAO implements BoardDAO {
 	}
 
 	@Override
-	public void insertBoardVO(BoardVO boardVO) {
+	public int insertBoardVO(BoardVO boardVO) {
 		// TODO Auto-generated method stub
-
+		return 0;
 	}
 
 	@Override
-	public void insertBoardVOSelectKey(BoardVO boardVO) {
+	public int insertBoardVOSelectKey(BoardVO boardVO) {
 		// TODO Auto-generated method stub
-
+ return 0;
 	}
 
 	@Override

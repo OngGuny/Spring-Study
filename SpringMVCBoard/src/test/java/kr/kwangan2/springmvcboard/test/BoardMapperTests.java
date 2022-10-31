@@ -44,4 +44,4 @@ public class BoardMapperTests {
 		log.info(boardVO);
 	}
 	
-}
+}// class
