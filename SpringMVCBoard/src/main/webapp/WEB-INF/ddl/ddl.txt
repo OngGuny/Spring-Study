@@ -1,0 +1,42 @@
+CMD로 오라클 계정 생성 및 권한 부여
+//
+sqlplus system/password
+
+//사용자 계정 생성
+ create user springmvcboard identified by springmvcboard;
+ 
+ //connect, resource, dba에 대해서 사용자계정에게 권한 부여
+ grant connect, resource, dba to springmvcboard;
+ 
+ //제약조건 설정
+ CREATE SEQUENCE seq_board INCREMENT BY 1;
+//테이블생성
+CREATE TABLE board(
+	bno number(10,0),
+	title varchar2(2000) NOT NULL,
+	content varchar2(4000) NOT NULL,
+	writr varchar2(200) NOT NULL,
+	regdate DATE DEFAULT sysdate ,
+	updatedate DATE DEFAULT sysdate
+);
+//comment 추가
+COMMENT ON COLUMN board.bno IS '번호';
+COMMENT ON COLUMN board.title IS '제목';
+COMMENT ON COLUMN board.content IS '내용';
+COMMENT ON COLUMN board.writr IS '작성자';
+COMMENT ON COLUMN board.regdate IS '등록일시';
+COMMENT ON COLUMN board.updatedate IS '수정일시';
+
+#pk설정
+ALTER TABLE board ADD CONSTRAINTS pk_board PRIMARY KEY(bno);
+
+#데이터 추가
+INSERT INTO board(bno,title,content,writr) VALUES (seq_board.nextval,'제목1','내용1','작성자1');
+INSERT INTO board(bno,title,content,writr) VALUES (seq_board.nextval,'제목2','내용2','작성자2');
+INSERT INTO board(bno,title,content,writr) VALUES (seq_board.nextval,'제목3','내용3','작성자3');
+
+
+
+
+
+
