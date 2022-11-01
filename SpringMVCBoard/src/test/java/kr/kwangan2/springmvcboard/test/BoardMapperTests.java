@@ -7,6 +7,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import kr.kwangan2.springmvcboard.domain.BoardVO;
+import kr.kwangan2.springmvcboard.domain.Criteria;
 import kr.kwangan2.springmvcboard.mapper.BoardMapper;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -23,44 +24,51 @@ public class BoardMapperTests {
 	public void testGetList() {
 		mapper.boardVOList().forEach(board -> log.info(board));
 	}
-	@Test
-	public void testinsertBoardVO() {
-		boardVO = new BoardVO();
-		boardVO.setTitle("»õ±Û");
-		boardVO.setContent("»õ³»¿ë");
-		boardVO.setWriter("Àü¹ÎÀç");
-		mapper.insertBoardVO(boardVO);
-		log.info(boardVO);
-	}
-	@Test
-	public void testBoardVOSelectkey() {
-		boardVO = new BoardVO();
-		boardVO.setTitle("½ÅÁ¦¸ñSK");
-		boardVO.setContent("½Å³»¿ëSK");
-		boardVO.setWriter("½ÅÀÛ¼ºÀÚSK");
-		mapper.inserBoardVOSelectKey(boardVO);
-		log.info(boardVO);
-	}
+//	@Test
+//	public void testinsertBoardVO() {
+//		boardVO = new BoardVO();
+//		boardVO.setTitle("ï¿½ï¿½ï¿½ï¿½");
+//		boardVO.setContent("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
+//		boardVO.setWriter("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
+//		mapper.insertBoardVO(boardVO);
+//		log.info(boardVO);
+//	}
+	/*
+	 * @Test public void testBoardVOSelectkey() { boardVO = new BoardVO();
+	 * boardVO.setTitle("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½SK"); boardVO.setContent("ï¿½Å³ï¿½ï¿½ï¿½SK");
+	 * boardVO.setWriter("ï¿½ï¿½ï¿½Û¼ï¿½ï¿½ï¿½SK"); mapper.inserBoardVOSelectKey(boardVO);
+	 * log.info(boardVO); }
+	 */
 	@Test
 	public void testSelectBoard() {
 		boardVO=mapper.selectBoardVO(4L);
 		log.info(boardVO);
 	}
+//	@Test
+//	public void testDeleteBoard() {
+//		int result = mapper.deleteBoardVO(35L);
+//		log.info(result);
+//	}
+//	@Test
+//	public void testUpdateBoard() {
+//		boardVO = new BoardVO();
+//		boardVO.setBno(1L);
+//		boardVO.setTitle("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½");
+//		boardVO.setContent("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
+//		boardVO.setWriter("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Û¾ï¿½ï¿½ï¿½");
+//		mapper.updateBoardVO(boardVO);
+//	}
+//	
 	@Test
-	public void testDeleteBoard() {
-		int result = mapper.deleteBoardVO(35L);
-		log.info(result);
+	public void testPaging() {
+		Criteria criteria = new Criteria(3,3);
+		
+		mapper.boardVOList(criteria).forEach(board -> log.info(board));
+		log.info("ë­ê¼¬ í˜ì´ì§• ëœê±° ë§ë‚˜?");// 20ì¤„ ë¶€í„° ìœ„ë¡œ 10ê°œ ë°›ì•„ì˜¨ë‹¤ 
 	}
-	@Test
-	public void testUpdateBoard() {
-		boardVO = new BoardVO();
-		boardVO.setBno(1L);
-		boardVO.setTitle("¼öÁ¤µÈ ±Û");
-		boardVO.setContent("¼öÁ¤µÈ ³»¿ë");
-		boardVO.setWriter("¼öÁ¤µÈ ±Û¾´ÀÌ");
-		mapper.updateBoardVO(boardVO);
-	}
-}
+	
+	
+}//class
 
 
 

@@ -2,11 +2,17 @@ package kr.kwangan2.springmvcboard.service.impl;
 
 import java.util.List;
 
-
 import kr.kwangan2.springmvcboard.domain.BoardVO;
+import kr.kwangan2.springmvcboard.domain.Criteria;
 
 
 public class BoardServiceImpl extends ApstactBoardService {
+
+	@Override
+	public int boardVOListCount(Criteria criteria) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 
 	@Override
 	public List<BoardVO> boardVOList() {
@@ -42,6 +48,12 @@ public class BoardServiceImpl extends ApstactBoardService {
 	public int updateBoardVO(BoardVO boardvo) {
 		// TODO Auto-generated method stub
 		return super.updateBoardVO(boardvo);
+	}
+
+	@Override
+	public List<BoardVO> boardVOList(Criteria criteria) {
+		// TODO Auto-generated method stub
+		return super.boardVOList(criteria);
 	}
 	
 }

@@ -1,3 +1,4 @@
+<%@page import="org.springframework.web.bind.annotation.RequestParam"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -18,16 +19,12 @@
 			<div class="panel-heading">Board Modify</div>
 			<div class="panel-body">
 
-				<form id="updateForm" role="form" action="/board/updateProc" method="post">
-
-					<input type='hidden' name='pageNum'
-						value='<c:out value="${cri.pageNum }"/>'> <input
-						type='hidden' name='amount'
-						value='<c:out value="${cri.amount }"/>'> <input
-						type='hidden' name='type' value='<c:out value="${cri.type }"/>'>
-					<input type='hidden' name='keyword'
-						value='<c:out value="${cri.keyword }"/>'>
-
+				<form id="updateForm" role="form" action="/board/updateProc"
+					method="post">
+					<input type='hidden' name='pageNum' value='<c:out value="${criteria.pageNum }"/>'> 
+						<input type='hidden' name='amount' value='<c:out value="${criteria.amount }"/>'>
+						 <input type='hidden' name='type' 	value='<c:out value="${criteria.type }"/>'>
+						  <input type='hidden' name='keyword' value='<c:out value="${criteria.keyword }"/>'>
 
 					<div class="form-group">
 						<label>Bno</label> <input class="form-control" name='bno'
@@ -65,7 +62,8 @@
 
 					<button id="updateBtn" class="btn btn-default">Update</button>
 					<button id="deleteBtn" bno="${boardVO.bno }" class="btn btn-danger">Delete</button>
-					<button id="listBtn" class="btn btn-info">List</button>
+					<button id="listBtn" pageNum="${param.pageNum }"
+						class="btn btn-info">List</button>
 				</form>
 
 

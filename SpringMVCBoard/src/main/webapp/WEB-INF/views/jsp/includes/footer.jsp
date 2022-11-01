@@ -5,6 +5,18 @@
 
     </div>
     <!-- /#wrapper -->
+<form id="actionForm" action="/board/list" method="get">
+	<input type="hidden" name="pageNum" value="${param.pageNum}" />
+            <input type="hidden" name='action' value="${param.action}"/>
+			<input type="hidden" name="bno" value="${param.bno }"/>
+	 <input type='hidden' name='type' value=
+	 '<c:out value="${pageCalc.criteria.type }"/>'
+	 />
+       <input type='hidden' name='keyword' value=
+       '<c:out value="${pageCalc.criteria.keyword }"/>'
+       />
+
+</form>
 
     <!-- jQuery 주석처리 -->
 <!--     <script src="/resources/vendor/jquery/jquery.min.js"></script> -->

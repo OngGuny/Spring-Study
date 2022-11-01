@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import kr.kwangan2.springmvcboard.domain.BoardVO;
+import kr.kwangan2.springmvcboard.domain.Criteria;
 import kr.kwangan2.springmvcboard.service.BoardService;
+import kr.kwangan2.springmvcboard.util.PageCalc;
 import lombok.AllArgsConstructor;
 
 @Controller
@@ -18,10 +20,20 @@ import lombok.AllArgsConstructor;
 public class BoardController {
    private BoardService boardService;
    
+//   @GetMapping("/list")
+//   public String listBoardVO(Model model) {
+//      model.addAttribute("boardVOList", boardService.boardVOList());
+//      return "boardList";
+//   }
+
    @GetMapping("/list")
-   public String listBoardVO(Model model) {
-      model.addAttribute("boardVOList", boardService.boardVOList());
-      return "boardList";
+   public String listBoardVO(Criteria criteria, Model model) {
+	   model.addAttribute("boardVOList", boardService.boardVOList(criteria));
+	   model.addAttribute("pageCalc", 
+			   new PageCalc(criteria, 
+					   boardService.boardVOListCount(criteria))
+			   				.calcPage());
+	   return "boardList";
    }
    
    @GetMapping("/boardInsert")
@@ -45,18 +57,18 @@ public class BoardController {
    }
 
    @PostMapping("/updateProc")
-   public String updateBoardVO(BoardVO boardVO, RedirectAttributes rttr) {
+   public String updateBoardVO(BoardVO boardVO, Criteria criteria,RedirectAttributes rttr) {
       if (boardService.updateBoardVO(boardVO) > 0) {
          rttr.addFlashAttribute("result", "success");
       }
-      return "redirect:/";
+      return "redirect:/"+criteria.getListLink();
    }
    
    @GetMapping("/delete")
-   public String deleteBoardVO(@RequestParam("bno") Long bno, RedirectAttributes rttr) {
+   public String deleteBoardVO(@RequestParam("bno") Long bno,Criteria criteria, RedirectAttributes rttr) {
       if (boardService.deleteBoardVO(bno) > 0) {
          rttr.addFlashAttribute("result", "success");
       }
-      return "redirect:/";
+      return "redirect:/"+criteria.getListLink();
    }
 }

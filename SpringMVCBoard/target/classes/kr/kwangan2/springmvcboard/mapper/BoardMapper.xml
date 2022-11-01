@@ -2,60 +2,107 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
-  <mapper namespace="kr.kwangan2.springmvcboard.mapper.BoardMapper">
-  	<select id="boardVOList" resultType="kr.kwangan2.springmvcboard.domain.BoardVO">
-  		<![CDATA[
-  		select * from board where bno > 0
-  		]]>
-  	</select>
-  	
-  	<insert id="insertBoardVO">
+
+<mapper namespace="kr.kwangan2.springmvcboard.mapper.BoardMapper">
+	<!-- <select id="boardVOList" resultType="kr.kwangan2.springmvcboard.domain.BoardVO"> -->
+	<!-- <![CDATA[ -->
+	<!-- select * from board where bno > 0 -->
+	<!-- ]]> -->
+	<!-- </select> -->
+
+	<select id="boardVOList"
+		resultType="kr.kwangan2.springmvcboard.domain.BoardVO">
+	<![CDATA[
+		select 
+			bno, title, content, writer, regdate, updatedate
+		from(
+			select /*+INDEX_DESC(board pk_board) */
+				rownum rn, bno, title, content, writer, regdate, updatedate
+			from
+				board
+			where 
+	]]>
+		<trim prefix="(" suffix=") AND " prefixOverrides="OR">
+			<foreach item="type" collection="typeArr">
+				<trim prefix="OR">
+					<choose>
+						<when test="type=='T'.toString()">
+							title like '%'||#{keyword}||'%'
+						</when>
+						<when test="type=='C'.toString()">
+							content like '%'||#{keyword}||'%'
+						</when>
+						<when test="type=='W'.toString()">
+							writer like '%'||#{keyword}||'%'
+						</when>
+					</choose>
+				</trim>
+			</foreach>
+		 </trim>
+	<![CDATA[
+				rownum <= #{pageNum} * #{amount}
+		)
+		where 
+			rn > (#{pageNum}-1) * #{amount}
+	
+	]]>
+
+	</select>
+   
+   <select id="boardVOListCount" resultType="int">
+      <![CDATA[
+         SELECT count(*) FROM board
+      ]]>
+   </select>
+
+	<insert id="insertBoardVO">
   		<![CDATA[
   		insert into board (bno, title, content, writer)
   		values(seq_board.nextval, #{title}, #{content}, #{writer})
   		]]>
-  	</insert>
-  	
-  	<insert id="inserBoardVOSelectKey">
-  	
-  		<selectKey keyProperty="bno" order="BEFORE" resultType="long">
-  			select seq_board.nextval from dual
-  		</selectKey>
+	</insert>
+
+	<insert id="inserBoardVOSelectKey">
+
+		<selectKey keyProperty="bno" order="BEFORE"
+			resultType="long">
+			select seq_board.nextval from dual
+		</selectKey>
   		<![CDATA[
   		insert into board (bno, title, content, writer)
   		values(#{bno}, #{title}, #{content}, #{writer})
   		]]>
-  	</insert>
-  	
-  	<select id="selectBoardVO" resultType="kr.kwangan2.springmvcboard.domain.BoardVO">
+	</insert>
+
+	<select id="selectBoardVO"
+		resultType="kr.kwangan2.springmvcboard.domain.BoardVO">
   	
 	  	<![CDATA[
 	  	select * from board where bno = #{bno}
 	  	]]>
-  	
-  	</select>
-  	
-  	<delete id="deleteBoardVO">
+
+	</select>
+
+	<delete id="deleteBoardVO">
   	
 	  	<![CDATA[
 	  		delete from board where bno = #{bno}
 	  	]]>
-  	
-  	</delete>
-  	
-  	<update id="updateBoardVO">
+
+	</delete>
+
+	<update id="updateBoardVO">
       <![CDATA[
          UPDATE board SET title = #{title}, content = #{content}, writer = #{writer} WHERE bno = #{bno}
       ]]>
-      </update>
+	</update>
 
-  	
-  	
-  	
-  	
-  	
-  </mapper>
+
+
+
+
+
+</mapper>
   
   
   

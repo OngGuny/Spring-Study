@@ -32,16 +32,28 @@ public class BoardControllerTests {
 	public void setup() {
 		this.mockMvc = MockMvcBuilders.webAppContextSetup(ctx).build();
 	}
+//	@Test
+//	public void testBoardVOList()throws Exception {
+//		log.info(
+//				mockMvc.perform(MockMvcRequestBuilders.get("/board/list"))
+//				.andReturn()
+//				.getModelAndView()
+//				.getModelMap());
+//	}
+	
 	@Test
-	public void testBoardVOList()throws Exception {
-		log.info(
-				mockMvc.perform(MockMvcRequestBuilders.get("/board/list"))
+	public void testListPaging() throws Exception{
+		log.info(mockMvc.perform(
+				MockMvcRequestBuilders.get("/board/list")
+				.param("pageNum", "2")
+				.param("amount", "5"))
 				.andReturn()
 				.getModelAndView()
-				.getModelMap());
+				.getModelMap()
+				);
 	}
 	
-}
+}//class
 
 
 
