@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd">
+<!-- 	<context:component-scan base-package="spring.di.ui, spring.di.entity" /> -->
+
+	<bean id="exam" class="spring.aop.entity.NewlecExam" p:kor="1" p:eng="1" p:math="1" p:com="1" />
+	<bean id="logAroundAdvice" class="spring.aop.advice.LogAroundAdvice" />
+<!-- 아래 주석하면 로그처리하는걸 뺄 수 있다. 자유롭게.  -->
+<!-- 	프록시 만듦d 얘는 클래스 로더 같은 도우미가 필요하기 때문에 프라퍼티에 타겟 넣어줌   property 의 네임은 세터명이고 ref가 위의 타겟-->
+<!-- 	<bean id="exam" class="org.springframework.aop.framework.ProxyFactoryBean"> -->
+		<!-- xml을 쓰면 우리는 타겟에 해당하는녀석과 핸들러(override invoke () 얘)만 만들면된다. -->
+<!-- 		<property name="target" ref="target"/> -->
+<!-- 		<property name="interceptorNames"> -->
+<!-- 			<list> -->
+<!-- 				<value>logAroundAdvice</value> -->
+<!-- 			</list> -->
+<!-- 		</property>		 -->
+<!-- 	</bean> -->
+
+
+
+
+	<!-- Exam exam = new NewlecExam(); -->
+<!-- 	<bean id="exam2" class="spring.di.entity.NewlecExam" p:kor="10" p:eng="20" /> -->
+<!-- 	<bean id="exam" class="spring.di.entity.NewlecExam" > -->
+<!-- 		<constructor-arg name="kor" value="10"></constructor-arg> -->
+<!-- 		<constructor-arg name="eng" value="20"></constructor-arg> -->
+<!-- 		<constructor-arg name="com" value="30"></constructor-arg> -->
+<!-- 		<constructor-arg name="math" value="40"></constructor-arg> -->
+	
+<!-- 	</bean> -->
+	
+	
+ 	<!-- ExamConsole console = new GridExamConsole(); --> 
+<!-- 	<bean id="console" class="spring.di.ui.GridExamConsole" > -->
+ 		<!-- console.setExam(exam); --> 
+<!-- 		<property name="exam" ref="exam" /> -->
+<!-- 	</bean> -->
+
+<!-- <bean id="exams" class="java.util.ArrayList"> -->
+<!-- 	<constructor-arg> -->
+<!-- 		<list> -->
+<!-- 			<bean class="spring.di.entity.NewlecExam" p:kor="1" p:eng="1"></bean> -->
+<!-- 			<ref bean="exam"/> -->
+<!-- 		</list> -->
+	
+<!-- 	</constructor-arg> -->
+<!-- </bean> -->
+
+</beans>
