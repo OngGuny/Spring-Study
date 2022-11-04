@@ -15,7 +15,6 @@ import spring.aop.entity.NewlecExam;
 public class Program {
 
 	public static void main(String[] args) {
-
 		ApplicationContext context = 
 				//new AnnotationConfigApplicationContext(NewlecDIconfig.class);
 				new ClassPathXmlApplicationContext("/spring/aop/setting.xml");
@@ -28,7 +27,6 @@ public class Program {
 		Exam proxy = (Exam) context.getBean("exam");
 		System.out.printf("total is %d\n", proxy.total());
 		System.out.printf("avg is %f\n", proxy.avg());
-
 		// 곁다리 업무 없다. 순수 이그잼
 //		Exam exam = new NewlecExam(1, 1, 1, 1);
 

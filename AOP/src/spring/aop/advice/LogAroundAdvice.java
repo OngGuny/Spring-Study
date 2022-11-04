@@ -9,7 +9,7 @@ public class LogAroundAdvice implements MethodInterceptor {
 	public Object invoke(MethodInvocation invocation) throws Throwable {
 
 		long start = System.currentTimeMillis();//실제업무담당메소드 바로위에서 실행
-
+		System.out.println("Around - start advice");
 		
 		
 	Object result =	invocation.proceed();
@@ -19,6 +19,7 @@ public class LogAroundAdvice implements MethodInterceptor {
 		long end = System.currentTimeMillis();
 		String message = (end - start) + "ms 시간이 걸렸습니다";
 		System.out.println(message);
+		System.out.println("Around - end advice");
 
 		
 		return result;

@@ -14,6 +14,47 @@
 	<bean id="logBeforeAdvice" class="spring.aop.advice.LogBeforeAdvice" />
 	<bean id="logAfterReturningAdvice" class="spring.aop.advice.LogAfterReturningAdvice" />
 	<bean id="logAfterThrowingAdvice" class="spring.aop.advice.LogAfterThrowingAdvice" />
+	
+<!-- 	<bean id="classicPointCut" class="org.springframework.aop.support.NameMatchMethodPointcut"> -->
+<!-- 		<property name="mappedName" value="total" /> -->
+<!-- 	</bean> -->
+
+<!--  위의 토탈과 프록시의 토탈을 연결해주는 것이 필요하다 . 그래서 바로 아래의 빈을 설정 --> 
+
+
+<!-- 	<bean id="classicBeforeAdvisor" class="org.springframework.aop.support.DefaultPointcutAdvisor"> -->
+<!-- 		<property name="advice" ref="logBeforeAdvice" /> -->
+<!-- 		<property name="pointcut" ref="classicPointCut" /> -->
+<!-- 	</bean> -->
+
+<!-- 	<bean id="classicAroundAdvisor" class="org.springframework.aop.support.DefaultPointcutAdvisor"> -->
+<!-- 		<property name="advice" ref="logAroundAdvice" /> -->
+<!-- 		<property name="pointcut" ref="classicPointCut" /> -->
+<!-- 	</bean> -->
+
+<!-- 이젠 위의 2개를 합쳐서 간단하게 쓰려고 한다. -->
+<!-- 	<bean id="classicBeforeAdvisor" class="org.springframework.aop.support.NameMatchMethodPointcutAdvisor"> -->
+<!-- 		<property name="advice" ref="logBeforeAdvice" /> -->
+<!-- 		<property name="mappedNames"> -->
+<!-- 			<list> -->
+<!-- 				<value>total</value> -->
+<!-- 				<value>avg</value>이러면 비보어드바이저가 avg에서도 사용가능. -->
+<!-- 			</list> -->
+<!-- 		</property> -->
+<!-- 	</bean> -->
+<!-- 이걸 패턴으로 하는방법은? -->
+
+	<bean id="classicAroundAdvisor" class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">
+		<property name="advice" ref="logAroundAdvice" />
+		<property name="patterns">
+			<list>
+				<value>.*to.*</value><!-- 정규식으로 모든 메소드 찾기 -->
+			</list>
+		</property>
+	</bean>
+
+
+
 <!-- 아래 주석하면 로그처리하는걸 뺄 수 있다. 자유롭게.  -->
 <!-- 	프록시 만듦d 얘는 클래스 로더 같은 도우미가 필요하기 때문에 프라퍼티에 타겟 넣어줌   property 의 네임은 세터명이고 ref가 위의 타겟-->
 	<bean id="exam" class="org.springframework.aop.framework.ProxyFactoryBean">
@@ -21,8 +62,8 @@
 		<property name="target" ref="target"/>
 		<property name="interceptorNames">
 			<list>
-				<value>logAroundAdvice</value>
-				<value>logBeforeAdvice</value>
+				<value>classicAroundAdvisor</value><!-- 얘도 토탈만 어라운드 적용됨. 뒤는 한번만하고 컷해서 잘림. -->
+<!-- 				<value>classicBeforeAdvisor</value>포인트컷을 써서 여기서 잘린다. 그래서 토탈에만 "앞에서 실행될 로직"이 나온다  -->
 				<value>logAfterReturningAdvice</value>
 				<value>logAfterThrowingAdvice</value>
 			</list>
