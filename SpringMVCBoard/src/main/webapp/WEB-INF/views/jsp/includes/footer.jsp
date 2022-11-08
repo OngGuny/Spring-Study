@@ -6,9 +6,9 @@
     </div>
     <!-- /#wrapper -->
 <form id="actionForm" action="/board/list" method="get">
-	<input type="hidden" name="pageNum" value="${param.pageNum}" />
-            <input type="hidden" name='action' value="${param.action}"/>
+	<input type="hidden" name="pageNum" value="${!empty param.pageNum? param.pageNum : '1'}" />
 			<input type="hidden" name="bno" value="${param.bno }"/>
+<%-- 이건왜또빼..?             <input type="hidden" name='action' value="${param.action}"/> --%>
 	 <input type='hidden' name='type' value=
 	 '<c:out value="${pageCalc.criteria.type }"/>'
 	 />

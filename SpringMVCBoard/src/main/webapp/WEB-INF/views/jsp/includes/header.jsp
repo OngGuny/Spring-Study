@@ -221,7 +221,7 @@ rel="stylesheet">
             <div class="sidebar-nav navbar-collapse">
                <ul class="nav" id="side-menu">
                   
-                  <li><a href="/board/boardInsert"><i class="fa fa-solid fa-list"></i>
+                  <li><a href="/"><i class="fa fa-solid fa-list"></i>
                         &nbsp;List</a></li>
                         
                         <li><a href="/board/boardInsert"><i class="fa fa-solid fa-pencil"></i>

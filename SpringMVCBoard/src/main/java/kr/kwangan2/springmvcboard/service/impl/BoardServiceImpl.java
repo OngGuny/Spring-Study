@@ -47,13 +47,17 @@ public class BoardServiceImpl extends ApstactBoardService {
 	@Override
 	public int updateBoardVO(BoardVO boardvo) {
 		// TODO Auto-generated method stub
-		return super.updateBoardVO(boardvo);
+		return 0;
 	}
 
 	@Override
 	public List<BoardVO> boardVOList(Criteria criteria) {
 		// TODO Auto-generated method stub
-		return super.boardVOList(criteria);
+		return null;
 	}
 	
-}
+	@Override
+	public void updateReplyCnt(long bno, int amount) {
+	}
+	
+}//class

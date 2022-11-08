@@ -61,7 +61,7 @@ public class BoardController {
       if (boardService.updateBoardVO(boardVO) > 0) {
          rttr.addFlashAttribute("result", "success");
       }
-      return "redirect:/"+criteria.getListLink();
+      return "redirect:/";
    }
    
    @GetMapping("/delete")
@@ -69,6 +69,6 @@ public class BoardController {
       if (boardService.deleteBoardVO(bno) > 0) {
          rttr.addFlashAttribute("result", "success");
       }
-      return "redirect:/"+criteria.getListLink();
+      return "redirect:/";
    }
 }

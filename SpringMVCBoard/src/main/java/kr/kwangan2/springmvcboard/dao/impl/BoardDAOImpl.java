@@ -61,5 +61,9 @@ public class BoardDAOImpl extends AbstractBoardDAO {
 		return mapper.boardVOListCount(criteria);
 	}
 
-
-}
+	@Override
+	public void updateReplyCnt(long bno, int amount) {
+		mapper.updateReplyCnt(bno, amount);
+	}
+	
+}//class

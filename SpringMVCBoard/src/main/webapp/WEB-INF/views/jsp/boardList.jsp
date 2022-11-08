@@ -79,13 +79,7 @@
                      </select> 
                         <input type='text' name='keyword'
                         value='<c:out value="${pageCalc.criteria.keyword}"/>' /> 
-                        <input
-                        type='hidden' name='pageNum'
-                        value='<c:out value="${pageCalc.criteria.pageNum}"/>' /> 
-                        <input
-                        type='hidden' name='amount'
-                        value='<c:out value="${pageCalc.criteria.amount}"/>' />
-
+						<input type="hidden" name="pn" value="${pageCalc.criteria.pageNum}" />
                      <button id="searchBtn" class='btn btn-default'>Search</button>
                   </form>
                </div>

@@ -18,7 +18,7 @@
       <div class="panel-heading">Board Insert</div>
       <div class="panel-body">
 
-        <form role="form" action="/board/boardInsertProc" method="post"><!-- 여기 이름 틀려서 못찾아감 -->
+        <form id="boardInsertForm" role="form" action="/board/boardInsertProc" method="post"><!-- 여기 이름 틀려서 못찾아감 -->
           <div class="form-group">
             <label>Title</label> <input class="form-control" name='title'>
           </div>
@@ -31,8 +31,8 @@
           <div class="form-group">
             <label>Writer</label> <input class="form-control" name='writer'>
           </div>
-          <button type="submit" class="btn btn-default">Submit Button</button>
-          <button type="reset" class="btn btn-default">Reset Button</button>
+          <button id="boardInsertSubmitBtn" type="submit" class="boardInsertBtns btn btn-default">Submit Button</button>
+          <button id="boardInsertResetBtn" type="reset" class="boardInsertBtns btn btn-default">Reset Button</button>
         </form>
 
       </div>

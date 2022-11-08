@@ -2,6 +2,8 @@ package kr.kwangan2.springmvcboard.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import kr.kwangan2.springmvcboard.domain.BoardVO;
 import kr.kwangan2.springmvcboard.domain.Criteria;
 
@@ -22,4 +24,6 @@ public interface BoardMapper {
 	public int deleteBoardVO(Long bno);
 	
 	public int updateBoardVO(BoardVO boardvo);
+	
+	 public void updateReplyCnt(@Param("bno") long bno , @Param("amount") int amount); //2개 인자 여러개 보내려면. @param 써줘야함. 
 }

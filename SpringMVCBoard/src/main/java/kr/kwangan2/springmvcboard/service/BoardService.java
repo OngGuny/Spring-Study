@@ -22,4 +22,6 @@ public interface BoardService {
 	public int deleteBoardVO(Long bno);
 
 	public int updateBoardVO(BoardVO boardvo);
+	
+	public void updateReplyCnt(long bno, int amount);
 }

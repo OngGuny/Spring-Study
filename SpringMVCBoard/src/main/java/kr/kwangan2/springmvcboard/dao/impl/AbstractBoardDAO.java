@@ -56,4 +56,8 @@ public class AbstractBoardDAO implements BoardDAO {
 		return 0;
 	}
 
-}
+	@Override
+	public void updateReplyCnt(long bno, int amount) {
+	}
+	
+}//class
