@@ -10,13 +10,11 @@ public class AbstractBoardDAO implements BoardDAO {
 
 	@Override
 	public List<BoardVO> boardVOList(Criteria criteria) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public int boardVOListCount(Criteria criteria) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
@@ -34,25 +32,21 @@ public class AbstractBoardDAO implements BoardDAO {
 
 	@Override
 	public int inserBoardVOSelectKey(BoardVO boardvo) {
-		// TODO Auto-generated method stub
 		return	0;
 	}
 
 	@Override
 	public BoardVO selectBoardVO(Long bno) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public int deleteBoardVO(Long bno) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
 	public int updateBoardVO(BoardVO boardvo) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 

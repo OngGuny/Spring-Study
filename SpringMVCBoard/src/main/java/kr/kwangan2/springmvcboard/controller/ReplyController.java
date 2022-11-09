@@ -50,7 +50,7 @@ public class ReplyController {
 					MediaType.APPLICATION_XML_VALUE
 			}
 			)
-		public ResponseEntity<ReplyPageVO>	 listReplyVO(
+		public ResponseEntity<ReplyPageVO>listReplyVO(
 				@PathVariable("bno") long bno,
 				@PathVariable("page") int page
 				){

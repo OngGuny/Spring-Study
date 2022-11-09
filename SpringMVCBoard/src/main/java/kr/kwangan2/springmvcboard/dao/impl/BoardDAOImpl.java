@@ -8,62 +8,67 @@ import org.springframework.stereotype.Service;
 import kr.kwangan2.springmvcboard.domain.BoardVO;
 import kr.kwangan2.springmvcboard.domain.Criteria;
 import kr.kwangan2.springmvcboard.mapper.BoardMapper;
+import kr.kwangan2.springmvcboard.mapper.ReplyMapper;
 import lombok.Setter;
 
 @Service
 public class BoardDAOImpl extends AbstractBoardDAO {
 
 	@Setter(onMethod_ = @Autowired)
-	private BoardMapper mapper;
+	private BoardMapper boardmapper;
+	
+	@Setter(onMethod_ = @Autowired)
+	private ReplyMapper replymapper;
 
 	@Override
 	public List<BoardVO> boardVOList() {
 
-		return mapper.boardVOList();
+		return boardmapper.boardVOList();
 	}
 
 	@Override
 	public List<BoardVO> boardVOList(Criteria criteria) {
-		return mapper.boardVOList(criteria);
+		return boardmapper.boardVOList(criteria);
 	}
 
 	@Override
 	public int insertBoardVO(BoardVO boardVO) {
-		return mapper.insertBoardVO(boardVO);
+		return boardmapper.insertBoardVO(boardVO);
 	}
 
 	@Override
 	public int inserBoardVOSelectKey(BoardVO boardvo) {
-		return mapper.inserBoardVOSelectKey(boardvo);
+		return boardmapper.inserBoardVOSelectKey(boardvo);
 	}
 
 	@Override
 	public BoardVO selectBoardVO(Long bno) {
 		// TODO Auto-generated method stub
-		return mapper.selectBoardVO(bno);
+		return boardmapper.selectBoardVO(bno);
 	}
 
 	@Override
 	public int deleteBoardVO(Long bno) {
 		// TODO Auto-generated method stub
-		return mapper.deleteBoardVO(bno);
+		return boardmapper.deleteBoardVO(bno);
 	}
 
 	@Override
 	public int updateBoardVO(BoardVO boardvo) {
 		// TODO Auto-generated method stub
-		return mapper.updateBoardVO(boardvo);
+		return boardmapper.updateBoardVO(boardvo);
 	}
 
 	@Override
 	public int boardVOListCount(Criteria criteria) {
 		// TODO Auto-generated method stub
-		return mapper.boardVOListCount(criteria);
+		return boardmapper.boardVOListCount(criteria);
 	}
 
 	@Override
 	public void updateReplyCnt(long bno, int amount) {
-		mapper.updateReplyCnt(bno, amount);
+		boardmapper.updateReplyCnt(bno, amount);
+		return; //void 는 그냥 값이 없다. 리턴을 안하는게 아니라 .
 	}
 	
 }//class

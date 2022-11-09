@@ -43,6 +43,8 @@
                      <td><a class='selectLink'  bno="${boardVO.bno}"
                      			pageNum="${!empty pageCalc.criteria.pageNum?pageCalc.criteria.pageNum:'1' }">
                            <c:out value="${boardVO.title}" />
+                           &nbsp;
+                           (${boardVO.replycnt})
                      </a></td>
 
                      <td><c:out value="${boardVO.writer}" /></td>
@@ -50,7 +52,7 @@
                            value="${boardVO.regdate}" /></td>
                      <td><fmt:formatDate pattern="yyyy-MM-dd"
                            value="${boardVO.updateDate}" /></td>
-                  </tr>
+                      </tr>
                </c:forEach>
             </table>
 
