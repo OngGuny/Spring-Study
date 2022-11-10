@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+<bean id="loginSuccess" class="kr.kwangan2.security.handler.LoginSuccess"></bean>
+
+<security:http>
+	<security:intercept-url pattern="/jsp/adminMain" access="permitAll"/>
+	<security:intercept-url pattern="/jsp/memberManagement" access="hasRole('ROLE_MEMBER_ADMIN')"/>
+	<security:intercept-url pattern="/jsp/boardManagement" access="hasRole('ROLE_BOARD_ADMIN')"/>
+	
+	<security:form-login login-page="/adminLogin"
+		authentication-success-handler-ref="loginSuccess" />
+		
+	<security:access-denied-handler error-page="/accessError" />
+	
+	<security:csrf disabled="true" />
+	<security:logout logout-url="/adminLogout" invalidate-session="true" /> 
+</security:http>
+
+
+<security:authentication-manager>
+	<security:authentication-provider>
+		<security:user-service>
+			<security:user name="a" password="{noop}a" authorities="ROLE_MEMBER_ADMIN,ROLE_BOARD_ADMIN"/>
+			<security:user name="ma" password="{noop}ma" authorities="ROLE_MEMBER_ADMIN"/>
+			<security:user name="ba" password="{noop}ba" authorities="ROLE_BOARD_ADMIN"/>
+		</security:user-service>
+	</security:authentication-provider>
+</security:authentication-manager>
+
+</beans>
